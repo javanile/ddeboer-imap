@@ -29,3 +29,12 @@ stop-imap-server:
 .PHONY: test
 test: vendor
 	IMAP_SERVER_NAME=localhost IMAP_SERVER_PORT=10993 IMAP_USERNAME=test@test.test IMAP_PASSWORD=p4ssword $(or ${PHP_BIN},php) -d zend.assertions=1 vendor/bin/phpunit ${arg}
+
+
+## ===========
+## Docker Test
+## ===========
+
+docker-test:
+	@docker-compose run --rm php vendor/bin/phpunit
+
