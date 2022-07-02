@@ -1,7 +1,15 @@
 version: "3"
 
 services:
-  php:
-    build: .
+  php-imap1:
+    build: ./tests/docker/imap1
     volumes:
       - ./:/app
+    env_file:
+      - .env
+  php-imap2:
+    build: ./tests/docker/imap2
+    volumes:
+      - ./:/app
+    env_file:
+      - .env

@@ -7,6 +7,7 @@ namespace Ddeboer\Imap;
 use Ddeboer\Imap\Exception\InvalidResourceException;
 use Ddeboer\Imap\Exception\ReopenMailboxException;
 use IMAP\Connection;
+use Javanile\Imap2\Connection as Connection2;
 
 /**
  * An imap resource stream.
@@ -34,7 +35,7 @@ final class ImapResource implements ImapResourceInterface
     public function getStream()
     {
         if (
-            !$this->resource instanceof Connection
+            !($this->resource instanceof Connection || $this->resource instanceof Connection2)
             && (false === \is_resource($this->resource) || 'imap' !== \get_resource_type($this->resource))
         ) {
             throw new InvalidResourceException('Supplied resource is not a valid imap resource');

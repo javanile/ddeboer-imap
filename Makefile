@@ -31,10 +31,21 @@ test: vendor
 	IMAP_SERVER_NAME=localhost IMAP_SERVER_PORT=10993 IMAP_USERNAME=test@test.test IMAP_PASSWORD=p4ssword $(or ${PHP_BIN},php) -d zend.assertions=1 vendor/bin/phpunit ${arg}
 
 
-## ===========
-## Docker Test
-## ===========
+## ======
+## Docker
+## ======
+docker-build:
+	@docker-compose build
+
+
+docker-install: docker-build
+	@docker-compose run --rm php composer install
+
+docker-update: docker-build
+	@docker-compose run --rm php-imap2 composer update
 
 docker-test:
-	@docker-compose run --rm php vendor/bin/phpunit
+	@docker-compose run --rm php-imap2 vendor/bin/phpunit --stop-on-failure
 
+docker-test-unit:
+	@docker-compose run --rm php-imap1 vendor/bin/phpunit --stop-on-failure --filter ConnectionTest::testCannotCreateMailboxesOnReadonly
