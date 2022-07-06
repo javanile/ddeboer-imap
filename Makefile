@@ -48,4 +48,7 @@ docker-test:
 	@docker-compose run --rm php-imap2 vendor/bin/phpunit --stop-on-failure
 
 docker-test-unit:
-	@docker-compose run --rm php-imap2 vendor/bin/phpunit --stop-on-failure --filter EmbeddedMessageTest::testEmbeddedMessage
+	@docker-compose run --rm php-imap1 vendor/bin/phpunit --stop-on-failure --filter EmbeddedMessageTest::testRecursiveEmbeddedAttachment
+
+docker-test-imap-open:
+	@docker-compose run --rm php-imap2 php tests/imap2/test-imap-open.php

@@ -57,7 +57,7 @@ final class EmbeddedMessageTest extends AbstractTest
         $embeddedAttachment = $embeddedMessage->getAttachments()[0];
         static::assertSame('testfile.txt', $embeddedAttachment->getFilename());
         static::assertSame(29, $embeddedAttachment->getSize());
-        static::assertSame('attachment', $embeddedAttachment->getDisposition());
+        static::assertSame('attachment', strtolower($embeddedAttachment->getDisposition()));
         static::assertSame('IHRoaXMgaXMgY29udGVudCBvZiB0ZXN0IGZpbGU=', $embeddedAttachment->getContent());
         static::assertSame('base64', $embeddedAttachment->getEncoding());
         static::assertSame(PartInterface::TYPE_TEXT, $embeddedAttachment->getType());
