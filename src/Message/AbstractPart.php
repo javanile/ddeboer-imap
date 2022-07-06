@@ -327,6 +327,9 @@ abstract class AbstractPart implements PartInterface
         if (true === $this->structureParsed) {
             return;
         }
+
+        file_put_contents(__DIR__.'/s1.json', json_encode($this->structure, JSON_PRETTY_PRINT));
+
         $this->structureParsed = true;
 
         $this->lazyLoadStructure();

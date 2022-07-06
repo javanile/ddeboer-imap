@@ -35,7 +35,9 @@ final class Attachment extends AbstractPart implements AttachmentInterface
 
     public function isEmbeddedMessage(): bool
     {
-        return self::TYPE_MESSAGE === $this->getType();
+        $type = $this->getType();
+
+        return self::TYPE_MESSAGE === $type;
     }
 
     public function getEmbeddedMessage(): EmbeddedMessageInterface

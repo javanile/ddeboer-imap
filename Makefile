@@ -48,4 +48,4 @@ docker-test:
 	@docker-compose run --rm php-imap2 vendor/bin/phpunit --stop-on-failure
 
 docker-test-unit:
-	@docker-compose run --rm php-imap1 vendor/bin/phpunit --stop-on-failure --filter ConnectionTest::testCannotCreateMailboxesOnReadonly
+	@docker-compose run --rm php-imap2 vendor/bin/phpunit --stop-on-failure --filter EmbeddedMessageTest::testEmbeddedMessage
